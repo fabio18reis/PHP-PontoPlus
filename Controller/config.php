@@ -21,7 +21,7 @@ class ConexaoComBanco {
 
 // Configurações de conexão
 $servidor = "localhost";
-$banco = "dbo_ponto";
+$banco = "pontoplus";
 $usuario = "root";
 $senha = "";
 

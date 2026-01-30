@@ -49,6 +49,8 @@ ORDER BY
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+
     public function listarContagemHoras($userId)
     {
         $sql = "SELECT Count(*) as Total_Solicitacoes From tb_plantao WHERE id_user = :id_user";

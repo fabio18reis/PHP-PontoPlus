@@ -25,7 +25,7 @@ class InsertHoraModel
             criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (id_registro),
             FOREIGN KEY (id_user) REFERENCES tb_users(id_user)
-        ) COLLATE='utf8mb4_0900_ai_ci';";
+        )";
         $this->db->exec($sql);
     }
 

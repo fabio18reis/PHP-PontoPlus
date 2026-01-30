@@ -19,7 +19,7 @@ class RegistroModel {
             user_email VARCHAR(110) NOT NULL,
             user_password VARCHAR(110) NOT NULL,
             PRIMARY KEY (id_user)
-        ) COLLATE='utf8mb4_0900_ai_ci';";
+        )";
         $this->db->exec($sql);
     }
 
