@@ -4,12 +4,12 @@ require_once "../Model/insertHoraModel.php";
 require_once "config.php";
 
 class InsertHoraController {
-    private $model;
 
-    public function __construct($conexao) {
-        $this->model = new InsertHoraModel($conexao);
-    }
-
+     public function __construct(
+        private InsertHoraModel $model
+    ) {}
+    
+    
     public function processarRequisicao() {
         if (!isset($_SESSION['user_id'])) {
             header("Location: loginView.php");
@@ -54,5 +54,5 @@ class InsertHoraController {
     }
 }
 
-$controller = new InsertHoraController($conexao);
+$controller = new InsertHoraController(new InsertHoraModel($conexao));
 $controller->processarRequisicao();

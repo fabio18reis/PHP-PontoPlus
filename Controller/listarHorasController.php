@@ -6,100 +6,74 @@ require_once "config.php";
 
 class ListarHorasController
 {
-    private $model;
 
-    public function __construct($conexao)
+    public function __construct(
+        private ListarHorasModel $model
+    ){}
+
+    public function listarHoras(int $userId): array
     {
-        $this->model = new ListarHorasModel($conexao);
-    }
-
-    public function listarHoras($userId)
-    {
-
-        try {
-            $horas = $this->model->listarHorasPorUsuario($userId);
-            if (!empty($horas)) {
-                return $horas;
-            } else {
-                return $horas = [];
-            }
+        try{
+            return $this->model->listarHorasPorUsuario($userId) ?? [];
         } catch (Exception $e) {
-            echo "Erro ao listar horas: " . $e->getMessage();
+            log::error("Erro ao listar horas: " . $e->getMessage());
             return [];
         }
     }
 
-    public function contarHoras($userId)
+    public function contarHoras(int $userId): array
     {
-        try {
-            $contagem = $this->model->listarContagemHoras($userId);
-            if (!empty($contagem)) {
-                return $contagem;
-            } else {
-                return $contagem = [];
-            }
+        try{
+            return $this->model->listarContagemHoras($userId) ?? [];
         } catch (Exception $e) {
-            echo "Erro ao retornar horas: " . $e->getMessage();
+            log::error("Erro ao contar horas: " . $e->getMessage());
             return [];
         }
     }
 
 
-
-    public function Pendentes($userId)
+    public function pendentes(int $userId): array
     {
-        try {
-            $contagem = $this->model->listarPendentes($userId);
-            if (!empty($contagem)) {
-                return $contagem;
-            } else {
-                return $contagem = [];
-            }
-        } catch (Exception $e) {
-            echo "Erro ao retornar horas: " . $e->getMessage();
+      try{
+         return $this->model->listarPendentes($userId) ?? [];
+            }catch (Exception $e){
+                  log::error("Erro ao listar solicitações pendentes: " . $e->getMessage());
             return [];
         }
-    }
 
- public function Aprovadas($userId)
-    {
-        try {
-            $contagem = $this->model->listarAprovadas($userId);
-            if (!empty($contagem)) {
-                return $contagem;
-            } else {
-                return $contagem = [];
-            }
-        } catch (Exception $e) {
-            echo "Erro ao retornar horas: " . $e->getMessage();
-            return [];
-        }
     }
 
 
-     public function Rejeitadas($userId)
+public function aprovadas(int $userId): array
     {
-        try {
-            $contagem = $this->model->listarRejeitadas($userId);
-            if (!empty($contagem)) {
-                return $contagem;
-            } else {
-                return $contagem = [];
-            }
-        } catch (Exception $e) {
-            echo "Erro ao retornar horas: " . $e->getMessage();
+      try{
+         return $this->model->listarAprovadas($userId) ?? [];
+            }catch (Exception $e){
+                  log::error("Erro ao listar solicitações aprovadas: " . $e->getMessage());
             return [];
         }
+
     }
+
+public function rejeitadas(int $userId): array
+{
+    try {
+        return $this -> model->listarRejeitadas($userId) ?? [];
+    }catch(Exception $e){
+        log::error("Erro ao listar solicitações rejeitadas: " . $e->getMessage());
+        return [];
+    }
+}
 
 }
 
 
 $userId = $_SESSION['user_id'] ?? null;
-// Execução do controller
-$controller = new ListarHorasController($conexao);
-$horasUser = $controller->listarHoras($userId);
-$contagemHoras = $controller->contarHoras($userId);
-$aprovadas = $controller->Aprovadas($userId);
-$pendentes = $controller->Pendentes($userId);   
-$rejeitadas = $controller->Rejeitadas($userId);
+$controller = new ListarHorasController(new ListarHorasModel($conexao));
+$dados = [
+    'horasUser' => $controller->listarHoras($userId),
+    'contagemHoras' => $controller->contarHoras($userId),
+    'aprovadas' => $controller->aprovadas($userId),
+    'pendentes' => $controller->pendentes($userId),
+    'rejeitadas' => $controller->rejeitadas($userId)
+];

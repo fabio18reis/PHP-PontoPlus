@@ -172,7 +172,7 @@ require "../Controller/listarHorasController.php";
                         <div class="row g-3 text-center">
                             <div class="col-md-2">
                                 <div class="p-3 border rounded bg-light">
-                                    <?php foreach ($contagemHoras as $solicitacoes):?>
+                                    <?php foreach ($dados['contagemHoras'] as $solicitacoes):?>
                                     <div class="text-primary fw-bold fs-5"><?= htmlspecialchars($solicitacoes['Total_Solicitacoes']);?>                                                                     
                                 <?php endforeach;?></div>
                                     <small>Total Solicitações</small>
@@ -180,7 +180,7 @@ require "../Controller/listarHorasController.php";
                             </div>
                             <div class="col-md-2">
                                 <div class="p-3 border rounded bg-light">
-                                    <?php foreach ($aprovadas as $aprovada):?>
+                                    <?php foreach ($dados['aprovadas'] as $aprovada):?>
                                     <div class="text-success fw-bold fs-5"><?= htmlspecialchars($aprovada['Total_Solicitacoes']);?></div>
                                     <?php endforeach;?>
                                     <small>Aprovadas</small>
@@ -188,7 +188,7 @@ require "../Controller/listarHorasController.php";
                             </div>
                             <div class="col-md-2">
                                 <div class="p-3 border rounded bg-light">
-                                    <?php foreach ($pendentes as $pendente):?>
+                                    <?php foreach ($dados['pendentes'] as $pendente):?>
                                     <div class="text-warning fw-bold fs-5"><?= htmlspecialchars($pendente['Total_Solicitacoes']);?></div>
                                     <?php endforeach;?>
                                     <small>Pendentes</small>
@@ -196,7 +196,7 @@ require "../Controller/listarHorasController.php";
                             </div>
                             <div class="col-md-2">
                                 <div class="p-3 border rounded bg-light">
-                                    <?php foreach ($rejeitadas as $rejeitada): ?>
+                                    <?php foreach ($dados['rejeitadas'] as $rejeitada): ?>
                                     <div class="text-danger fw-bold fs-5"><?= htmlspecialchars($rejeitada['Total_Solicitacoes']);?></div>
                                     <?php endforeach; ?>
                                     <small>Negadas</small>
@@ -238,7 +238,7 @@ require "../Controller/listarHorasController.php";
 
                         <?php
 
-                        foreach ($horasUser as $horaUser): ?>                            
+                        foreach ($dados['horasUser'] as $horaUser): ?>                            
                             <div class="border rounded p-3 mb-3" id="todas">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
@@ -334,7 +334,7 @@ require "../Controller/listarHorasController.php";
                             <tbody>
                                 <?php
 
-                                foreach ($horasUser as $horaUser): ?>
+                                foreach ($dados['horasUser'] as $horaUser): ?>
                                     <tr>
                                         <td class="text-center"><?= htmlspecialchars($horaUser['data']) ?></td>
                                         <td class="text-center"><?= htmlspecialchars($horaUser['hora_inicio']) ?></td>
@@ -352,9 +352,32 @@ require "../Controller/listarHorasController.php";
 
             <!-- Colaboradores -->
             <div class="tab-pane fade" id="colaboradores" role="tabpanel">
-                <div class="card card-custom p-4 text-center">
-                    <h6>Em breve: Lista de Colaboradores</h6>
-                </div>
+                <<div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-center">Nome</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Equipe</th>
+                                    <th class="text-center">Posição</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                foreach ($dados['horasUser'] as $horaUser): ?>
+                                    <tr>
+                                        <td class="text-center"><?= htmlspecialchars($horaUser['data']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($horaUser['hora_inicio']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($horaUser['almoco_saida']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($horaUser['almoco_volta']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
 
             <!-- Horas Extras -->
