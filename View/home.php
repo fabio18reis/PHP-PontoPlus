@@ -2,6 +2,7 @@
 session_start();
 require "../Controller/quantoFizController.php";
 require "../Controller/listarHorasController.php";
+require "../Controller/listarUsuarioController.php";
 ?>
 
 <!DOCTYPE html>
@@ -367,12 +368,12 @@ require "../Controller/listarHorasController.php";
                             <tbody>
                                 <?php
 
-                                foreach ($dados['horasUser'] as $horaUser): ?>
+                                foreach ($usuarios as $usuario): ?>
                                     <tr>
-                                        <td class="text-center"><?= htmlspecialchars($horaUser['data']) ?></td>
-                                        <td class="text-center"><?= htmlspecialchars($horaUser['hora_inicio']) ?></td>
-                                        <td class="text-center"><?= htmlspecialchars($horaUser['almoco_saida']) ?></td>
-                                        <td class="text-center"><?= htmlspecialchars($horaUser['almoco_volta']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($usuario['user_name']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($usuario['user_email']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($usuario['user_equipe']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($usuario['user_cargo']) ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
