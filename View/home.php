@@ -353,7 +353,7 @@ require "../Controller/listarUsuarioController.php";
 
             <!-- Colaboradores -->
             <div class="tab-pane fade" id="colaboradores" role="tabpanel">
-                <<div class="table-responsive">
+                <div class="table-responsive">
                         <table class="table align-middle">
                             <thead class="table-light">
                                 <tr>
