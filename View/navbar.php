@@ -2,7 +2,7 @@
   <div class="container-fluid px-4">
     <!-- Logo / Nome do sistema -->
     <a class="navbar-brand fw-bold" href="home.php">
-      <i class="bi bi-clock-history text-primary"></i> Controle de Ponto
+      <i class="bi bi-clock-history text-primary"></i> Ponto Plus+
     </a>
 
     <!-- Botão mobile -->
